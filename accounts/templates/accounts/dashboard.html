@@ -1,0 +1,213 @@
+{% extends 'accounts/base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <!-- PAGE HEADER -->
+    <div class="mb-5">
+
+        <h1 class="fw-bold">
+
+            📊 Dashboard
+
+        </h1>
+
+        <p class="text-muted">
+
+            Welcome back, {{ user.username }}
+
+        </p>
+
+    </div>
+
+
+    <!-- STATS -->
+    <div class="row mb-5">
+
+        <!-- MY SKILLS -->
+        <div class="col-md-4 mb-4">
+
+            <div class="card shadow p-4 h-100">
+
+                <h3 class="fw-bold">
+
+                    💡 My Skills
+
+                </h3>
+
+                <h1 class="display-5 fw-bold mt-3">
+
+                    {{ my_skills.count }}
+
+                </h1>
+
+            </div>
+
+        </div>
+
+        <!-- REQUESTS -->
+        <div class="col-md-4 mb-4">
+
+            <div class="card shadow p-4 h-100">
+
+                <h3 class="fw-bold">
+
+                    📥 Requests
+
+                </h3>
+
+                <h1 class="display-5 fw-bold mt-3">
+
+                    {{ received_requests.count }}
+
+                </h1>
+
+            </div>
+
+        </div>
+
+        <!-- REVIEWS -->
+        <div class="col-md-4 mb-4">
+
+            <div class="card shadow p-4 h-100">
+
+                <h3 class="fw-bold">
+
+                    ⭐ Reviews
+
+                </h3>
+
+                <h1 class="display-5 fw-bold mt-3">
+
+                    {{ reviews.count }}
+
+                </h1>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- MY SKILLS LIST -->
+    <div class="card shadow p-4 mb-5">
+
+        <h3 class="fw-bold mb-4">
+
+            💡 My Skills
+
+        </h3>
+
+        {% for skill in my_skills %}
+
+            <div class="border rounded p-3 mb-3">
+
+                <h5 class="fw-bold">
+
+                    {{ skill.title }}
+
+                </h5>
+
+                <p class="mb-2 text-muted">
+
+                    {{ skill.description }}
+
+                </p>
+
+                <span class="badge bg-primary">
+
+                    {{ skill.category }}
+
+                </span>
+
+            </div>
+
+        {% empty %}
+
+            <p class="text-muted">
+
+                You have not added any skills yet.
+
+            </p>
+
+        {% endfor %}
+
+    </div>
+
+
+    <!-- RECENT REQUESTS -->
+    <div class="card shadow p-4">
+
+        <h3 class="fw-bold mb-4">
+
+            📥 Recent Requests
+
+        </h3>
+
+        {% for request in received_requests %}
+
+            <div class="border rounded p-3 mb-3">
+
+                <h5 class="fw-bold">
+
+                    {{ request.skill.title }}
+
+                </h5>
+
+                <p class="mb-2">
+
+                    Requested by:
+                    <strong>
+
+                        {{ request.sender.username }}
+
+                    </strong>
+
+                </p>
+
+                <!-- STATUS -->
+                {% if request.status == 'pending' %}
+
+                    <span class="badge bg-warning text-dark">
+
+                        Pending
+
+                    </span>
+
+                {% elif request.status == 'accepted' %}
+
+                    <span class="badge bg-success">
+
+                        Accepted
+
+                    </span>
+
+                {% elif request.status == 'rejected' %}
+
+                    <span class="badge bg-danger">
+
+                        Rejected
+
+                    </span>
+
+                {% endif %}
+
+            </div>
+
+        {% empty %}
+
+            <p class="text-muted">
+
+                No requests yet.
+
+            </p>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

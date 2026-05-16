@@ -1,0 +1,225 @@
+{% extends 'accounts/base.html' %}
+
+{% block content %}
+
+<style>
+
+.skill-card {
+
+    border: none;
+
+    border-radius: 20px;
+
+    transition: 0.3s;
+}
+
+.skill-card:hover {
+
+    transform: translateY(-5px);
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+.profile-img {
+
+    width: 55px;
+
+    height: 55px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+}
+
+</style>
+
+
+<!-- HEADER -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+
+        <h2 class="fw-bold">
+
+            💡 Explore Skills
+
+        </h2>
+
+        <p class="text-muted">
+
+            Learn, collaborate and grow together.
+
+        </p>
+
+    </div>
+
+    <a href="/skills/add/"
+       class="btn btn-primary px-4 py-2">
+
+        + Add Skill
+
+    </a>
+
+</div>
+
+
+<!-- SEARCH -->
+<div class="card p-4 shadow-sm mb-5">
+
+    <form method="GET" class="row g-3">
+
+        <div class="col-md-5">
+
+            <input
+                type="text"
+                name="q"
+                class="form-control"
+                placeholder="Search skills..."
+                value="{{ request.GET.q }}"
+            >
+
+        </div>
+
+        <div class="col-md-4">
+
+            <select
+                name="category"
+                class="form-select"
+            >
+
+                <option value="all">
+
+                    All Categories
+
+                </option>
+
+                <option value="coding">
+
+                    Coding
+
+                </option>
+
+                <option value="design">
+
+                    Design
+
+                </option>
+
+                <option value="editing">
+
+                    Editing
+
+                </option>
+
+                <option value="teaching">
+
+                    Teaching
+
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <button
+                type="submit"
+                class="btn btn-dark w-100"
+            >
+
+                🔍 Search
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+
+<!-- SKILLS -->
+<div class="row">
+
+{% for skill in skills %}
+
+<div class="col-lg-4 col-md-6 mb-4">
+
+    <div class="card skill-card p-4 shadow-sm h-100">
+
+        <!-- USER -->
+        <div class="d-flex align-items-center mb-3">
+
+            <img
+                src="{{ skill.user.profile.profile_picture.url }}"
+                class="profile-img me-3"
+            >
+
+            <div>
+
+                <a
+                    href="{% url 'public_profile' skill.user.username %}"
+                    class="fw-bold text-dark text-decoration-none"
+                >
+
+                    {{ skill.user.username }}
+
+                </a>
+
+                <br>
+
+                <small class="text-muted">
+
+                    Student Mentor
+
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- CATEGORY -->
+        <span class="badge bg-primary mb-3">
+
+            {{ skill.category }}
+
+        </span>
+
+
+        <!-- TITLE -->
+        <h4 class="fw-bold">
+
+            {{ skill.title }}
+
+        </h4>
+
+
+        <!-- DESCRIPTION -->
+        <p class="text-muted mt-3">
+
+            {{ skill.description|truncatewords:20 }}
+
+        </p>
+
+
+        <!-- OPEN DETAIL PAGE -->
+        <a
+            href="{% url 'skill_detail' skill.id %}"
+            class="btn btn-dark w-100 mt-auto"
+        >
+
+            📄 View Skill
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

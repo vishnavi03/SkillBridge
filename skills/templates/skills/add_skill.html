@@ -1,0 +1,170 @@
+{% extends 'accounts/base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="card p-5 shadow">
+
+        <h2 class="fw-bold mb-4">
+
+            ➕ Add New Skill
+
+        </h2>
+
+        <form method="POST"
+              enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <!-- TITLE -->
+            <label class="mb-2">
+
+                Skill Title
+
+            </label>
+
+            <input
+                type="text"
+                name="title"
+                class="form-control mb-4"
+                required
+            >
+
+            <!-- DESCRIPTION -->
+            <label class="mb-2">
+
+                Description
+
+            </label>
+
+            <textarea
+                name="description"
+                class="form-control mb-4"
+                rows="4"
+                required
+            ></textarea>
+
+            <!-- CATEGORY -->
+            <label class="mb-2">
+
+                Category
+
+            </label>
+
+            <select
+                name="category"
+                class="form-select mb-4"
+            >
+
+                <option value="coding">
+
+                    Coding
+
+                </option>
+
+                <option value="design">
+
+                    Design
+
+                </option>
+
+                <option value="editing">
+
+                    Editing
+
+                </option>
+
+                <option value="teaching">
+
+                    Teaching
+
+                </option>
+
+            </select>
+
+
+            <!-- DEMO SECTION -->
+            <h4 class="mt-5 mb-3">
+
+                👀 Demo Resources
+
+            </h4>
+
+            <!-- DEMO LINK -->
+            <label class="mb-2">
+
+                Demo Link
+
+            </label>
+
+            <input
+                type="url"
+                name="demo_link"
+                class="form-control mb-4"
+            >
+
+            <!-- DEMO FILE -->
+            <label class="mb-2">
+
+                Demo PDF/File
+
+            </label>
+
+            <input
+                type="file"
+                name="demo_file"
+                class="form-control mb-4"
+            >
+
+
+            <!-- PREMIUM SECTION -->
+            <h4 class="mt-5 mb-3">
+
+                🔒 Premium Resources
+
+            </h4>
+
+            <!-- PREMIUM LINK -->
+            <label class="mb-2">
+
+                Premium Link
+
+            </label>
+
+            <input
+                type="url"
+                name="premium_link"
+                class="form-control mb-4"
+            >
+
+            <!-- PREMIUM FILE -->
+            <label class="mb-2">
+
+                Premium PDF/File
+
+            </label>
+
+            <input
+                type="file"
+                name="premium_file"
+                class="form-control mb-4"
+            >
+
+            <!-- BUTTON -->
+            <button
+                type="submit"
+                class="btn btn-primary px-5 py-2"
+            >
+
+                Add Skill
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

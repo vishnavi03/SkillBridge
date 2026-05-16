@@ -1,0 +1,63 @@
+{% extends 'accounts/base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="card shadow p-5 text-center">
+
+        <h1 class="fw-bold text-danger mb-4">
+
+            🗑 Delete Resource
+
+        </h1>
+
+        <h4 class="mb-4">
+
+            Are you sure you want to delete:
+
+        </h4>
+
+        <h3 class="fw-bold">
+
+            "{{ resource.title }}"
+
+        </h3>
+
+        <p class="text-muted mt-3">
+
+            This action cannot be undone.
+
+        </p>
+
+        <!-- DELETE FORM -->
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <button
+                type="submit"
+                class="btn btn-danger px-5 py-2 mt-3"
+            >
+
+                Yes, Delete
+
+            </button>
+
+        </form>
+
+        <!-- CANCEL -->
+        <a
+            href="{% url 'skill_detail' resource.skill.id %}"
+            class="btn btn-secondary mt-3"
+        >
+
+            Cancel
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

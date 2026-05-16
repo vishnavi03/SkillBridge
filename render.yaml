@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: skillbridge
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn skillbridge.wsgi:application"
+    envVars:
+      - key: DEBUG
+        value: False

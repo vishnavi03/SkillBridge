@@ -1,0 +1,118 @@
+{% extends 'accounts/base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="card shadow p-5">
+
+        <h1 class="fw-bold mb-4">
+
+            ✏️ Edit Skill
+
+        </h1>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <!-- TITLE -->
+            <label class="mb-2">
+
+                Skill Title
+
+            </label>
+
+            <input
+                type="text"
+                name="title"
+                class="form-control mb-4"
+                value="{{ skill.title }}"
+                required
+            >
+
+            <!-- DESCRIPTION -->
+            <label class="mb-2">
+
+                Description
+
+            </label>
+
+            <textarea
+                name="description"
+                class="form-control mb-4"
+                rows="5"
+                required
+            >{{ skill.description }}</textarea>
+
+            <!-- CATEGORY -->
+            <label class="mb-2">
+
+                Category
+
+            </label>
+
+            <select
+                name="category"
+                class="form-select mb-4"
+            >
+
+                <option value="coding"
+                    {% if skill.category == 'coding' %}
+                        selected
+                    {% endif %}
+                >
+
+                    Coding
+
+                </option>
+
+                <option value="design"
+                    {% if skill.category == 'design' %}
+                        selected
+                    {% endif %}
+                >
+
+                    Design
+
+                </option>
+
+                <option value="editing"
+                    {% if skill.category == 'editing' %}
+                        selected
+                    {% endif %}
+                >
+
+                    Editing
+
+                </option>
+
+                <option value="teaching"
+                    {% if skill.category == 'teaching' %}
+                        selected
+                    {% endif %}
+                >
+
+                    Teaching
+
+                </option>
+
+            </select>
+
+            <!-- BUTTON -->
+            <button
+                type="submit"
+                class="btn btn-primary px-5 py-2"
+            >
+
+                💾 Save Changes
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

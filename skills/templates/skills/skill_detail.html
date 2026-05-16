@@ -1,0 +1,295 @@
+{% extends 'accounts/base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="card shadow p-5 mb-4">
+
+        <!-- USER -->
+        <div class="d-flex align-items-center mb-4">
+
+            <img
+                src="{{ skill.user.profile.profile_picture.url }}"
+                width="70"
+                height="70"
+                class="rounded-circle me-3"
+            >
+
+            <div>
+
+                <a
+                    href="{% url 'public_profile' skill.user.username %}"
+                    class="fw-bold text-dark text-decoration-none fs-4"
+                >
+
+                    {{ skill.user.username }}
+
+                </a>
+
+                <br>
+
+                <small class="text-muted">
+
+                    Student Mentor
+
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <!-- CATEGORY -->
+        <span class="badge bg-primary mb-3">
+
+            {{ skill.category }}
+
+        </span>
+
+
+        <!-- TITLE -->
+        <h1 class="fw-bold">
+
+            {{ skill.title }}
+
+        </h1>
+
+
+        <!-- DESCRIPTION -->
+        <p class="text-muted mt-4">
+
+            {{ skill.description }}
+
+        </p>
+
+
+        <!-- DEMO -->
+        <div class="mt-5">
+
+            <h4 class="fw-bold mb-3">
+
+                👀 Demo Resources
+
+            </h4>
+
+            {% for resource in skill.resources.all %}
+
+                {% if resource.resource_type == 'demo' %}
+
+                    <div class="card p-3 mb-3">
+
+                        <h6 class="fw-bold">
+
+                            {{ resource.title }}
+
+                        </h6>
+
+                        {% if resource.link %}
+
+                            <a
+                                href="{{ resource.link }}"
+                                target="_blank"
+                                class="btn btn-outline-info mb-2"
+                            >
+
+                                🔗 Open Link
+
+                            </a>
+
+                        {% endif %}
+
+                        {% if resource.file %}
+
+                            <a
+                                href="{{ resource.file.url }}"
+                                target="_blank"
+                                class="btn btn-outline-secondary mb-2"
+                            >
+
+                                📄 Open File
+
+                            </a>
+
+                        {% endif %}
+
+                        <!-- DELETE -->
+                        {% if user == skill.user or user.is_staff %}
+
+                            <a
+                                href="{% url 'delete_resource' resource.id %}"
+                                class="btn btn-danger btn-sm"
+                            >
+
+                                🗑 Delete Resource
+
+                            </a>
+
+                        {% endif %}
+
+                    </div>
+
+                {% endif %}
+
+            {% empty %}
+
+                <p class="text-muted">
+
+                    No demo resources yet.
+
+                </p>
+
+            {% endfor %}
+
+        </div>
+
+
+        <!-- PREMIUM -->
+        <div class="mt-5">
+
+            <h4 class="fw-bold mb-3">
+
+                🔒 Premium Resources
+
+            </h4>
+
+            {% if user == skill.user or approved %}
+
+                {% for resource in skill.resources.all %}
+
+                    {% if resource.resource_type == 'premium' %}
+
+                        <div class="card p-3 mb-3">
+
+                            <h6 class="fw-bold">
+
+                                {{ resource.title }}
+
+                            </h6>
+
+                            {% if resource.link %}
+
+                                <a
+                                    href="{{ resource.link }}"
+                                    target="_blank"
+                                    class="btn btn-outline-success mb-2"
+                                >
+
+                                    🔗 Open Link
+
+                                </a>
+
+                            {% endif %}
+
+                            {% if resource.file %}
+
+                                <a
+                                    href="{{ resource.file.url }}"
+                                    target="_blank"
+                                    class="btn btn-outline-dark mb-2"
+                                >
+
+                                    📄 Open File
+
+                                </a>
+
+                            {% endif %}
+
+                            <!-- DELETE -->
+                            {% if user == skill.user or user.is_staff %}
+
+                                <a
+                                    href="{% url 'delete_resource' resource.id %}"
+                                    class="btn btn-danger btn-sm"
+                                >
+
+                                    🗑 Delete Resource
+
+                                </a>
+
+                            {% endif %}
+
+                        </div>
+
+                    {% endif %}
+
+                {% empty %}
+
+                    <p class="text-muted">
+
+                        No premium resources yet.
+
+                    </p>
+
+                {% endfor %}
+
+            {% else %}
+
+                <form
+                    action="{% url 'send_request' skill.id %}"
+                    method="POST"
+                >
+
+                    {% csrf_token %}
+
+                    <button
+                        type="submit"
+                        class="btn btn-success"
+                    >
+
+                        🤝 Request Access
+
+                    </button>
+
+                </form>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- ACTIONS -->
+        {% if user == skill.user or user.is_staff %}
+
+            <div class="mt-5">
+
+                <a
+                    href="{% url 'edit_skill' skill.id %}"
+                    class="btn btn-primary me-2"
+                >
+
+                    ✏️ Edit Skill
+
+                </a>
+
+                {% if user == skill.user %}
+
+                    <a
+                        href="{% url 'add_resource' skill.id %}"
+                        class="btn btn-dark me-2"
+                    >
+
+                        ➕ Add Resource
+
+                    </a>
+
+                {% endif %}
+
+                <a
+                    href="{% url 'delete_skill' skill.id %}"
+                    class="btn btn-danger"
+                >
+
+                    🗑 Delete Skill
+
+                </a>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

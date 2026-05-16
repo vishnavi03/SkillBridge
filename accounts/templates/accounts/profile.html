@@ -1,0 +1,87 @@
+{% extends 'accounts/base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="card p-4 shadow">
+
+        <h2 class="mb-4">
+
+            My Profile
+
+        </h2>
+
+        <!-- PROFILE IMAGE -->
+        {% if profile.profile_picture %}
+
+            <img
+                src="{{ profile.profile_picture.url }}"
+                width="150"
+                height="150"
+                class="rounded-circle mb-3"
+            >
+
+        {% endif %}
+
+        <!-- FORM -->
+        <form method="POST"
+              enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <!-- Upload Image -->
+            <label class="mt-2">
+                Profile Picture
+            </label>
+
+            <input
+                type="file"
+                name="profile_picture"
+                class="form-control"
+            >
+
+            <!-- Bio -->
+            <label class="mt-3">
+                Bio
+            </label>
+
+            <textarea
+                name="bio"
+                class="form-control"
+            >{{ profile.bio }}</textarea>
+
+            <!-- Skills Offered -->
+            <label class="mt-3">
+                Skills Offered
+            </label>
+
+            <textarea
+                name="skills_offered"
+                class="form-control"
+            >{{ profile.skills_offered }}</textarea>
+
+            <!-- Skills Needed -->
+            <label class="mt-3">
+                Skills Needed
+            </label>
+
+            <textarea
+                name="skills_needed"
+                class="form-control"
+            >{{ profile.skills_needed }}</textarea>
+
+            <button
+                type="submit"
+                class="btn btn-primary mt-4"
+            >
+                Save Profile
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

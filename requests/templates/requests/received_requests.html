@@ -1,0 +1,92 @@
+{% extends 'accounts/base.html' %}
+
+{% block content %}
+
+<h2 class="mb-4 fw-bold">
+
+    📥 Service Requests
+
+</h2>
+
+{% for req in requests %}
+
+    <div class="card p-4 mb-4 shadow">
+
+        <h4>
+
+            {{ req.skill.title }}
+
+        </h4>
+
+        <p>
+
+            Requested by:
+            <b>{{ req.sender.username }}</b>
+
+        </p>
+
+        <!-- STATUS -->
+        <p>
+
+            Status:
+
+            {% if req.status == 'accepted' %}
+
+                <span class="badge bg-success">
+
+                    Accepted
+
+                </span>
+
+            {% elif req.status == 'pending' %}
+
+                <span class="badge bg-warning text-dark">
+
+                    Pending
+
+                </span>
+
+            {% elif req.status == 'rejected' %}
+
+                <span class="badge bg-danger">
+
+                    Rejected
+
+                </span>
+
+            {% endif %}
+
+        </p>
+
+        <!-- ACTION BUTTONS -->
+        {% if req.status == 'pending' %}
+
+            <a href="/requests/accept/{{ req.id }}/"
+               class="btn btn-success btn-sm">
+
+                Accept
+
+            </a>
+
+            <a href="/requests/reject/{{ req.id }}/"
+               class="btn btn-danger btn-sm">
+
+                Reject
+
+            </a>
+
+        {% endif %}
+
+    </div>
+
+{% empty %}
+
+    <div class="alert alert-secondary">
+
+        No requests received.
+
+    </div>
+
+{% endfor %}
+
+{% endblock %}

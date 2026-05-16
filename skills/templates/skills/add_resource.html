@@ -1,0 +1,122 @@
+{% extends 'accounts/base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="card p-5 shadow">
+
+        <h2 class="fw-bold mb-4">
+
+            📂 Add Resource
+
+        </h2>
+
+        <h5 class="mb-4">
+
+            Skill:
+            {{ skill.title }}
+
+        </h5>
+
+        <form method="POST"
+              enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <!-- TITLE -->
+            <label class="mb-2">
+
+                Resource Title
+
+            </label>
+
+            <input
+                type="text"
+                name="title"
+                class="form-control mb-4"
+                required
+            >
+
+            <!-- TYPE -->
+            <label class="mb-2">
+
+                Resource Type
+
+            </label>
+
+            <select
+                name="resource_type"
+                class="form-select mb-4"
+            >
+
+                <option value="demo">
+
+                    Demo
+
+                </option>
+
+                <option value="premium">
+
+                    Premium
+
+                </option>
+
+            </select>
+
+            <!-- LINK -->
+            <label class="mb-2">
+
+                Resource Link (optional)
+
+            </label>
+
+            <input
+                type="url"
+                name="link"
+                class="form-control mb-4"
+                placeholder="https://..."
+            >
+
+            <!-- FILE -->
+            <label class="mb-2">
+
+                Upload PDF/File (optional)
+
+            </label>
+
+            <input
+                type="file"
+                name="file"
+                class="form-control mb-4"
+            >
+
+            <div class="alert alert-info">
+
+                You can upload:
+                <br>
+                ✅ only link
+                <br>
+                ✅ only file
+                <br>
+                ✅ or both
+
+            </div>
+
+            <!-- BUTTON -->
+            <button
+                type="submit"
+                class="btn btn-primary px-5"
+            >
+
+                Add Resource
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

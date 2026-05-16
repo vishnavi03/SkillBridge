@@ -1,0 +1,163 @@
+{% extends 'accounts/base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="card p-4 shadow">
+
+        <!-- Profile Picture -->
+        <img
+            src="{{ profile.profile_picture.url }}"
+            width="150"
+            height="150"
+            class="rounded-circle mb-3"
+        >
+
+        <!-- Username -->
+        <h2>
+
+            {{ profile_user.username }}
+
+        </h2>
+
+        <!-- Average Rating -->
+        <h4 class="mt-3">
+
+            Average Rating:
+
+            {% if average_rating %}
+
+                ⭐ {{ average_rating|floatformat:1 }}
+
+            {% else %}
+
+                No ratings yet
+
+            {% endif %}
+
+        </h4>
+
+        <!-- Bio -->
+        <p class="mt-3">
+
+            {{ profile.bio }}
+
+        </p>
+
+        <!-- Skills Offered -->
+        <h5 class="mt-4">
+
+            Skills Offered
+
+        </h5>
+
+        <p>
+
+            {{ profile.skills_offered }}
+
+        </p>
+
+        <!-- Skills Needed -->
+        <h5 class="mt-4">
+
+            Skills Needed
+
+        </h5>
+
+        <p>
+
+            {{ profile.skills_needed }}
+
+        </p>
+
+    </div>
+
+
+    <!-- User Skills -->
+    <div class="card p-4 shadow mt-4">
+
+        <h4>
+
+            Skills
+
+        </h4>
+
+        {% for skill in skills %}
+
+            <div class="border p-2 mb-2">
+
+                <b>
+
+                    {{ skill.title }}
+
+                </b>
+
+                <br>
+
+                {{ skill.description }}
+
+            </div>
+
+        {% empty %}
+
+            <p>
+
+                No skills added.
+
+            </p>
+
+        {% endfor %}
+
+    </div>
+
+
+    <!-- Reviews -->
+    <div class="card p-4 shadow mt-4">
+
+        <h4>
+
+            Reviews
+
+        </h4>
+
+        {% for review in reviews %}
+
+            <div class="border p-3 mb-3 rounded">
+
+                <h5>
+
+                    ⭐ {{ review.rating }}/5
+
+                </h5>
+
+                <p>
+
+                    "{{ review.comment }}"
+
+                </p>
+
+                <small>
+
+                    By:
+                    {{ review.reviewer.username }}
+
+                </small>
+
+            </div>
+
+        {% empty %}
+
+            <p>
+
+                No reviews yet.
+
+            </p>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}
