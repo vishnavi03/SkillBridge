@@ -147,10 +147,23 @@ Add project screenshots here later.
 
 Suggested screenshots:
 - Homepage
+- <img width="1365" height="606" alt="image" src="https://github.com/user-attachments/assets/db72578b-36ea-4472-84ed-ed7ee132d4e6" />
+- <img width="1364" height="587" alt="image" src="https://github.com/user-attachments/assets/2ccd358b-4d1c-4281-842b-b2f5863458ec" />
+
 - Dashboard
+- <img width="1360" height="601" alt="image" src="https://github.com/user-attachments/assets/18ad3cda-d269-4b44-8d5e-8dba01ad8613" />
+
 - Skills page
-- Skill detail page
-- Public profile page
+- <img width="1365" height="599" alt="image" src="https://github.com/user-attachments/assets/475f0f9a-abd5-44e6-9c11-47aada3a68fe" />
+
+- Skill detail page(skill owner)
+- <img width="1362" height="602" alt="image" src="https://github.com/user-attachments/assets/6b76e6e8-3f0e-4b23-b79a-efe96ced3c89" />
+
+- Skill detail page(accessing others skill)
+- <img width="1363" height="593" alt="image" src="https://github.com/user-attachments/assets/1d39ff37-7416-43fc-8572-ba4e6a55541b" />
+
+- Requests page
+- <img width="1354" height="578" alt="image" src="https://github.com/user-attachments/assets/75a1cb1c-c933-4f63-8b1f-eb3ecae787ea" />
 
 ---
 
@@ -175,7 +188,7 @@ Through this project, I gained practical experience in:
 # 👩‍💻 Developer
 
 Vishnavi  
-B.Tech Information Technology — 2nd Year
+B.Tech Information Technology
 
 ---
 
