@@ -143,9 +143,6 @@ SkillBridge is deployed on Render using:
 
 # 📸 Screenshots
 
-Add project screenshots here later.
-
-Suggested screenshots:
 - Homepage
 - <img width="1365" height="606" alt="image" src="https://github.com/user-attachments/assets/db72578b-36ea-4472-84ed-ed7ee132d4e6" />
 - <img width="1364" height="587" alt="image" src="https://github.com/user-attachments/assets/2ccd358b-4d1c-4281-842b-b2f5863458ec" />
